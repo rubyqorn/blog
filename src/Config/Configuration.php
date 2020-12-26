@@ -2,6 +2,9 @@
 
 namespace App\Config;
 
+/**
+ * Abstraction for configuration file parsers 
+ */ 
 abstract class Configuration
 {
     /**
