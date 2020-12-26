@@ -26,4 +26,16 @@ class Controller
         // TODO: Refactor dependency
         $this->view = new View;
     }
+
+    /**
+     * Render pased view template
+     * 
+     * @param string $template
+     * @param array $data 
+     * @return void 
+     */ 
+    public function render(string $template, array $data = [])
+    {
+        return $this->view->render($template, $data);
+    }
 }
