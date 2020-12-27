@@ -3,11 +3,18 @@
 <div class="container mb-4" id="preview">
     <div class="row justify-content-center">
 
-        <div class="col-lg-8">
-            <img src="img/avatar.jpeg" alt="" class="avatar rounded">
-            <div class="col-lg-8 d-flex mt-3">
-                <p class="text-muted">Anton Hideger</p>
-                <div class="d-flex ml-auto p-0">
+        <div class="col-lg-8 border-bottom pb-3">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                    <img src="img/avatar.jpeg" alt="" class="rounded avatar">
+                </div>
+
+                <div class="col-lg-6 justify-content-end d-flex">
+                    <a href="/about/index" class="text-muted mr-2">
+                        <small>
+                            Anton Hideger
+                        </small>
+                    </a>
                     <a href="/" class="text-dark mr-2">
                         <i class="fab fa-github"></i>
                     </a>

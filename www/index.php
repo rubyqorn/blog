@@ -11,4 +11,9 @@ $frontController->register([
     'action' => 'index'
 ]);
 
+$frontController->register([
+    'controller' => 'AboutController',
+    'action' => 'index'
+]);
+
 $frontController->run();
