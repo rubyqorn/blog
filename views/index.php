@@ -15,13 +15,13 @@
                             Anton Hideger
                         </small>
                     </a>
-                    <a href="/" class="text-dark mr-2">
+                    <a href="https://github.com/rubyqorn" class="text-dark mr-2">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="/" class="text-info mr-2">
+                    <a href="https://t.me/rubyqorn" class="text-info mr-2">
                         <i class="fab fa-telegram"></i>
                     </a>
-                    <a href="/" class="text-primary mr-2">
+                    <a href="https://vk.com/rubyqorn" class="text-primary mr-2">
                         <i class="fab fa-vk"></i>
                     </a>
                 </div>
@@ -30,57 +30,29 @@
 
         <div class="col-lg-8 mt-4">
             <p class="text-dark font-weight-bold h4">
-                Blog
+                Блог
             </p>
         </div>
 
-        <div class="col-lg-8 border mt-4 rounded p-4">
-            <a href="/" class="h5 text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eaque!</a>
-            <p class="text-muted">
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, odio fuga? Perferendis nobis quo expedita placeat assumenda. Labore exercitationem dignissimos voluptate quaerat maxime nostrum, voluptatibus, dolorem id corrupti officiis enim.
-                </small>
-            </p>
-            <div class="d-flex justify-content-end">
-                <span class="text-muted font-weight-bold">
-                    <small>
-                    12 jan 2020
-                    </small>
-                </span>
-            </div>
-        </div>
+        <?php foreach($posts as $post): ?>
 
-        <div class="col-lg-8 border mt-4 rounded p-4">
-            <a href="/" class="h5 text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eaque!</a>
-            <p class="text-muted">
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, odio fuga? Perferendis nobis quo expedita placeat assumenda. Labore exercitationem dignissimos voluptate quaerat maxime nostrum, voluptatibus, dolorem id corrupti officiis enim.
-                </small>
-            </p>
-            <div class="d-flex justify-content-end">
-                <span class="text-muted font-weight-bold">
+            <div class="col-lg-8 border mt-4 rounded p-4">
+                <a href="/post/index?id=<?php echo $post['id'] ?>" class="h5 text-dark"><?php echo $post['title'] ?></a>
+                <p class="text-muted">
                     <small>
-                    12 jan 2020
+                        <?php echo $post['preview_text']; ?>
                     </small>
-                </span>
+                </p>
+                <div class="d-flex justify-content-end">
+                    <span class="text-muted font-weight-bold">
+                        <small>
+                            <?php echo date('d M Y', strtotime($post['created_at'])) ?>
+                        </small>
+                    </span>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg-8 border mt-4 rounded p-4">
-            <a href="/" class="h5 text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, eaque!</a>
-            <p class="text-muted">
-                <small>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, odio fuga? Perferendis nobis quo expedita placeat assumenda. Labore exercitationem dignissimos voluptate quaerat maxime nostrum, voluptatibus, dolorem id corrupti officiis enim.
-                </small>
-            </p>
-            <div class="d-flex justify-content-end">
-                <span class="text-muted font-weight-bold">
-                    <small>
-                    12 jan 2020
-                    </small>
-                </span>
-            </div>
-        </div>
+        <?php endforeach; ?>
 
     </div>
 </div>
