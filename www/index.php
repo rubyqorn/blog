@@ -16,4 +16,9 @@ $frontController->register([
     'action' => 'index'
 ]);
 
+$frontController->register([
+    'controller' => 'PostController',
+    'action' => 'index'
+]);
+
 $frontController->run();
