@@ -40,7 +40,7 @@
                 <a href="/post/index?id=<?php echo $post['id'] ?>" class="h5 text-dark"><?php echo $post['title'] ?></a>
                 <p class="text-muted">
                     <small>
-                        <?php echo $post['preview_text']; ?>
+                        <?php echo $post['preview_text'] . '...'; ?>
                     </small>
                 </p>
                 <div class="d-flex justify-content-end">
