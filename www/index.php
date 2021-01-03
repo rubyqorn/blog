@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Http\FrontController;
@@ -19,6 +21,16 @@ $frontController->register([
 $frontController->register([
     'controller' => 'PostController',
     'action' => 'index'
+]);
+
+$frontController->register([
+    'controller' => 'LoginController',
+    'action' => 'index'
+]);
+
+$frontController->register([
+    'controller' => 'LoginController',
+    'action' => 'login'
 ]);
 
 $frontController->run();

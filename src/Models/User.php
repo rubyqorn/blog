@@ -9,5 +9,28 @@ use App\Database\Model;
  */ 
 class User extends Model
 {
+    /**
+     * Default table name 
+     * 
+     * @var string 
+     */ 
     private string $table = 'users';
+
+    /**
+     * Finds user by username value and returns
+     * password and username
+     * 
+     * @param string $username 
+     * @return array 
+     */ 
+    public function getUserByUsername(string $username)
+    {
+        $statement = $this->connection->prepare(
+            "SELECT username, password FROM blog.{$this->table} WHERE username = ?"
+        );
+
+        $statement->execute([$username]);
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

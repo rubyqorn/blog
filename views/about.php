@@ -11,7 +11,10 @@
                 Junior PHP Developer
             </p>
             <p class="text-muted">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi minus doloremque, natus a inventore iure omnis repellendus aspernatur vitae perferendis blanditiis dicta repudiandae, voluptate dignissimos alias facilis tempora sunt illum et animi exercitationem. Nulla, corporis modi fugiat libero esse voluptate omnis rem voluptates autem eos quos deleniti, dolorum at voluptatem et veritatis ratione dicta magni nobis a facere. Nesciunt in, fuga excepturi deleniti saepe autem fugiat tenetur sequi, praesentium dolorem velit nihil corporis repudiandae quis soluta molestias repellat molestiae nisi accusamus totam tempora cum nam iste error. At perspiciatis consequuntur consequatur consectetur. Cum nihil minima sapiente consequuntur voluptate tempore tenetur.
+                Начинающий веб-разработчик, имеющий небольшой коммерческий опыт разработки с такими технологиями как, PHP 7, Git, JavaScript, PostgreSQL, Bootstrap 4, Vue js. Имею
+                способность к самостоятельному решению задач, быстрому обучению, а также быть неотъемлемой
+                частью команды. Активно разрабатываю собственные проекты и получаю знания в отрасли веб
+                разработки.
             </p>
         </div>
         <div class="col-lg-10 mt-4">
@@ -19,13 +22,13 @@
                 Ссылки
             </p>
             <div class="d-flex">
-                <a href="/" class="text-dark mr-2">
+                <a href="https://github.com/rubyqorn" class="text-dark mr-2">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="/" class="text-info mr-2">
+                <a href="https://t.me/rubyqorn" class="text-info mr-2">
                     <i class="fab fa-telegram"></i>
                 </a>
-                <a href="/" class="text-primary mr-2">
+                <a href="https://vk.com/rubyqorn" class="text-primary mr-2">
                     <i class="fab fa-vk"></i>
                 </a>
             </div>

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Http\Request;
+use App\Http\Response;
 use App\View\View;
 
 /**
@@ -37,5 +39,21 @@ class Controller
     public function render(string $template, array $data = [])
     {
         return $this->view->render($template, $data);
+    }
+
+    /**
+     * @return \App\Http\Request 
+     */ 
+    public function getRequest(): Request
+    {
+        return new Request();
+    }
+
+    /**
+     * @return \App\Http\Response 
+     */ 
+    public function getResponse(): Response
+    {
+        return new Response();
     }
 }

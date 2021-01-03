@@ -23,7 +23,7 @@ class Post extends Model
     public function getPosts()
     {
         $statement = $this->connection->query(
-            "SELECT id, title, body, created_at FROM blog.{$this->table}"
+            "SELECT id, title, preview_text, body, created_at FROM blog.{$this->table}"
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
