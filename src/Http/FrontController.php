@@ -92,19 +92,11 @@ class FrontController implements FrontControllerInterface
     }
 
     /**
-     * Parse query string and returns controller and
-     * action name in array format. First parameter
-     * from query string must be controller name and
-     * second must be action name. While sub directories
-     * not available for definition
+     * Parse query string and returns current path.
+     * If current path equals '/' or empty string
+     * sets '/'
      * 
-     * Example: 
-     * [
-     *  '0' => 'home'
-     *  '1' => 'index'
-     * ];
-     * 
-     * @return array
+     * @return string
      */ 
     public function parseUri()
     {

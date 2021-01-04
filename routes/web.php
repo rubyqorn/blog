@@ -13,7 +13,7 @@ $frontController->register([
 ]);
 
 $frontController->register([
-    'route' => 'posts/index',
+    'route' => 'post/index',
     'controller' => 'PostController',
     'action' => 'index'
 ]);
