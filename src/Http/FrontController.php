@@ -72,6 +72,14 @@ class FrontController implements FrontControllerInterface
     private array $definitions = [];
 
     /**
+     * Current path name which will be parsed
+     * using explode function
+     * 
+     * @var string 
+     */ 
+    private string $path;
+
+    /**
      * Register new controller and action names
      * which will be mathched in run method
      * 
@@ -100,16 +108,13 @@ class FrontController implements FrontControllerInterface
      */ 
     public function parseUri()
     {
-        $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), "/");
+        $this->path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), "/");
 
-        if ($path == '' || $path == $this->defaultPath) {
-            return [
-                'index', 
-                'index'
-            ];
+        if ($this->path == '' || $this->path == $this->defaultPath) {
+            $this->path = '/';
         }
         
-        return explode('/', $path);
+        return $this->path;
     }
 
     /**
@@ -122,7 +127,7 @@ class FrontController implements FrontControllerInterface
      */ 
     public function setController(string $controller)
     {
-        $controller = '\App\Controllers\\'. ucfirst($controller).'Controller';
+        $controller = '\App\Controllers\\'. ucfirst($controller);
         
         if (!class_exists($controller)) {
             throw new \Exception("Controller with {$controller} name doesn't exists");
@@ -162,6 +167,27 @@ class FrontController implements FrontControllerInterface
     }
 
     /**
+     * Matches current path from query string 
+     * with defined or registered routes from front controller
+     * instance. If routes was matched returns defined
+     * route array with route, controller and action
+     * values or false if was not matched
+     * 
+     * @param string $path
+     * @return array|bool  
+     */ 
+    public function matchPathWithRoutes(string $path)
+    {
+        foreach($this->definitions as $route) {
+            if ($path == $route['route']) {
+                return $route;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Run matching registered controller and action names
      * with query string.
      * 
@@ -174,27 +200,17 @@ class FrontController implements FrontControllerInterface
      */ 
     public function run()
     {
-        $parsedPath = $this->parseUri();
+        $this->parseUri();
+        $route = $this->matchPathWithRoutes($this->path);
 
-        $this->setController($parsedPath['0']);
-        $this->setAction($parsedPath['1']);
-        $this->setParams($_GET);
-
-        $callController = '';
-        $callAction = '';
-
-        foreach($this->definitions as $definition) {
-            $controller = '\App\Controllers\\'. $definition['controller'];
-            
-            if ($this->controller === $controller) {
-                $callController = $controller;
-            }
-
-            if ($this->action === $definition['action']) {                    
-                $callAction = $definition['action'];
-            }
+        if (!$route) {
+            throw new \Exception("Failed to match routes. Path '{$this->path}' not registered");
         }
 
-        return call_user_func_array([new $callController, $callAction], $this->params);
+        $this->setController($route['controller']);
+        $this->setAction($route['action']);
+        $this->setParams($_GET);
+
+        return call_user_func_array([new $this->controller, $this->action], $this->params);
     }
 }

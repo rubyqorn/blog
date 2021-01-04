@@ -42,10 +42,10 @@ class Response
      * Sets response data which will be sent with 
      * response 
      * 
-     * @param array $data 
+     * @param string|array $data 
      * @return void 
      */ 
-    public function setData(array $data)
+    public function setData($data)
     {
         $this->data[] = $data; 
     }
@@ -127,6 +127,8 @@ class Response
         foreach($this->headers as $header) {
             $headers .= $header;
         }
+
+        $headers .= "HTTP/1.1 {$this->code}";
 
         $this->sendHeader($headers);
         return $this->data;
