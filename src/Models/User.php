@@ -33,4 +33,18 @@ class User extends Model
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Returns quantity of available users in blog
+     * 
+     * @return array 
+     */ 
+    public function getUsersQuantity()
+    {
+        $statement = $this->connection->query(
+            "SELECT COUNT(*) AS quantity FROM {$this->table}"
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -51,4 +51,34 @@ class Post extends Model
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Returns quantity of created posts in blog
+     * for metrics
+     * 
+     * @return array 
+     */ 
+    public function getPostsQuantity()
+    {
+        $statement = $this->connection->query(
+            "SELECT COUNT(*) AS quantity FROM {$this->table}"
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns date of last created post in timestamp
+     * format
+     * 
+     * @return array 
+     */ 
+    public function getDateOfLastCreatedPost()
+    {
+        $statement = $this->connection->query(
+            "SELECT created_at FROM {$this->table} ORDER BY created_at DESC LIMIT 1"
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -11,3 +11,9 @@ $frontController->register([
     'controller' => 'API\PostsController',
     'action' => 'stats'
 ]);
+
+$frontController->register([
+    'route' => 'api/users/stats',
+    'controller' => 'API\UsersController',
+    'action' => 'stats'
+]);
