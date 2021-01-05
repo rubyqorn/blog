@@ -15,6 +15,21 @@ class User extends Model
      * @var string 
      */ 
     private string $table = 'users';
+ 
+    /**
+     * Returns users list, with id, username
+     * img fields
+     * 
+     * @return array
+     */ 
+    public function getUsers()
+    {
+        $statement = $this->connection->query(
+            "SELECT id, username, img FROM {$this->table}"
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     /**
      * Finds user by username value and returns
