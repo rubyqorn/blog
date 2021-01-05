@@ -8,6 +8,13 @@ use App\Controllers\Controller;
 class PostsController extends Controller
 {
     /**
+     * Data access layer
+     * 
+     * @var \App\Models\Post 
+     */ 
+    private Post $postModel;
+
+    /**
      * Initiates PostsController constructor method
      * 
      * @return void 

@@ -15,6 +15,21 @@ class User extends Model
      * @var string 
      */ 
     private string $table = 'users';
+ 
+    /**
+     * Returns users list, with id, username
+     * img fields
+     * 
+     * @return array
+     */ 
+    public function getUsers()
+    {
+        $statement = $this->connection->query(
+            "SELECT id, username, img FROM {$this->table}"
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
     /**
      * Finds user by username value and returns
@@ -26,10 +41,24 @@ class User extends Model
     public function getUserByUsername(string $username)
     {
         $statement = $this->connection->prepare(
-            "SELECT username, password FROM blog.{$this->table} WHERE username = ?"
+            "SELECT username, password FROM {$this->table} WHERE username = ?"
         );
 
         $statement->execute([$username]);
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns quantity of available users in blog
+     * 
+     * @return array 
+     */ 
+    public function getUsersQuantity()
+    {
+        $statement = $this->connection->query(
+            "SELECT COUNT(*) AS users_quantity FROM {$this->table}"
+        );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
