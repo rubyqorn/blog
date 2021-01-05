@@ -42,7 +42,7 @@ class User extends Model
     public function getUsersQuantity()
     {
         $statement = $this->connection->query(
-            "SELECT COUNT(*) AS quantity FROM {$this->table}"
+            "SELECT COUNT(*) AS users_quantity FROM {$this->table}"
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);

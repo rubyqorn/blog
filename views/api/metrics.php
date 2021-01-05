@@ -6,13 +6,13 @@ use App\Auth\Authentication;
 use App\Http\ApiResponse;
 
 Authentication::authenticate(
-    function(ApiResponse $response) use ($stats) {
+    function(ApiResponse $response) use ($metrics) {
 
-        if (!$stats) {
+        if (!$metrics) {
             return $response->failureResponse('Stats not available. No posts statistics');
         }
 
-        return $response->successResponse($stats);
+        return $response->successResponse($metrics);
     },
     function(ApiResponse $response) {
         return $response->failureResponse('You are not authenticated');

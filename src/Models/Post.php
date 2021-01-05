@@ -61,7 +61,7 @@ class Post extends Model
     public function getPostsQuantity()
     {
         $statement = $this->connection->query(
-            "SELECT COUNT(*) AS quantity FROM {$this->table}"
+            "SELECT COUNT(*) AS posts_quantity FROM {$this->table}"
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
