@@ -26,7 +26,7 @@ class User extends Model
     public function getUserByUsername(string $username)
     {
         $statement = $this->connection->prepare(
-            "SELECT username, password FROM blog.{$this->table} WHERE username = ?"
+            "SELECT username, password FROM {$this->table} WHERE username = ?"
         );
 
         $statement->execute([$username]);

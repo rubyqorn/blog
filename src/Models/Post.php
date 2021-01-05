@@ -23,7 +23,7 @@ class Post extends Model
     public function getPosts()
     {
         $statement = $this->connection->query(
-            "SELECT id, title, preview_text, body, created_at FROM blog.{$this->table}"
+            "SELECT id, title, preview_text, body, created_at FROM {$this->table}"
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
@@ -40,9 +40,9 @@ class Post extends Model
     public function getPostById(int $id)
     {
         $statement = $this->connection->prepare(
-            "SELECT blog.u.username, blog.p.title, blog.p.body, blog.p.created_at 
-                FROM blog.{$this->table} p 
-                INNER JOIN blog.users u
+            "SELECT u.username, p.title, blog.p.body, p.created_at 
+                FROM {$this->table} p 
+                INNER JOIN users u
                 ON u.id = p.user_id 
                 AND p.id = ?"
         );

@@ -16,7 +16,7 @@ class MySQLDriver extends DatabaseConnector
     {
         $settings = $this->getSettings()['settings']['components']['database'];
 
-        $pdo = new PDO("{$settings['driver']}:host={$settings['host']};db_name={$settings['db_name']}", $settings['db_user'], $settings['db_password']);
+        $pdo = new PDO("{$settings['driver']}:host={$settings['host']};dbname={$settings['db_name']};", $settings['db_user'], $settings['db_password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         return $pdo;    
