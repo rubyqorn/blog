@@ -42,4 +42,22 @@ class UsersController extends Controller
 
         return $this->render('api/users', compact('users'));
     }
+
+    /**
+     * Returns unique user from database table
+     * by id with username, id, img table rows
+     * 
+     * @param int $id
+     * @return void 
+     */ 
+    public function getUserById(int $id)
+    {
+        $user = $this->userModel->getUserById($id);
+
+        if (empty($user)) {
+            return $this->render('api/user');
+        }
+
+        return $this->render('api/user', compact('user'));
+    }
 }

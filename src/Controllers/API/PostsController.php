@@ -43,4 +43,23 @@ class PostsController extends Controller
 
         return $this->render('api/posts', compact('posts'));
     }
+
+    /**
+     * Finds unique post in database by specified
+     * id and returns preview_text, title, body, created_at,
+     * id and author username table rows
+     * 
+     * @param int $id
+     * @return void 
+     */ 
+    public function getPostById(int $id)
+    {
+        $post = $this->postModel->getPostById($id);
+
+        if (empty($post)) {
+            return $this->render('api/post');
+        }
+
+        return $this->render('api/post', compact('post'));
+    }
 }

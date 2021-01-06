@@ -40,7 +40,7 @@ class Post extends Model
     public function getPostById(int $id)
     {
         $statement = $this->connection->prepare(
-            "SELECT u.username, p.title, blog.p.body, p.created_at 
+            "SELECT u.username, p.id, p.preview_text, p.title, p.body, p.created_at 
                 FROM {$this->table} p 
                 INNER JOIN users u
                 ON u.id = p.user_id 
