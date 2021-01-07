@@ -60,4 +60,29 @@ class UsersController extends Controller
 
         return $this->render('api/user', compact('user'));
     }
+
+    /**
+     * Updates users by unique id field.
+     * Edits username and img fields in users
+     * table and returns status message if user
+     * was edited successfully
+     * 
+     * @return void 
+     */ 
+    public function edit()
+    {
+        $request = $this->getRequest();
+
+        if (!$request->isMethod('POST')) {
+            return $this->render('api/edit_user');
+        }
+
+        if (!$this->userModel->editUser($request->all())) {
+            return $this->render('api/edit_user');
+        }
+
+        $status = "User with id {$request->post('id')} was edited";
+
+        return $this->render('api/edit_user', compact('status'));
+    }
 }

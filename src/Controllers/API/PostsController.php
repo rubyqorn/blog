@@ -62,4 +62,28 @@ class PostsController extends Controller
 
         return $this->render('api/post', compact('post'));
     }
+
+    /**
+     * Updates post by unique id field. 
+     * Edits only title, preview_text and body posts table
+     * rows and returns status if post was edited successfully
+     * 
+     * @return void
+     */ 
+    public function edit()
+    {
+        $request = $this->getRequest();
+
+        if (!$request->isMethod('POST')) {
+            return $this->render('api/edit_post');
+        }
+
+        if (!$this->postModel->editPost($request->all())) {
+            return $this->render('api/edit_post');
+        }
+
+        $status = "Post with id {$request->post('id')} was edited";
+
+        return $this->render('api/edit_post', compact('status'));
+    }
 }

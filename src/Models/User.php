@@ -81,4 +81,21 @@ class User extends Model
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Updates posts username and img posts table rows 
+     * by unique id field and returns primitive bool data type
+     * 
+     * @return bool
+     */
+    public function editUser(array $fields)
+    {
+        $statement = $this->connection->prepare(
+            "UPDATE {$this->table} SET username = ? SET img = ? WHERE id = ?"
+        );
+
+        return $statement->execute([
+            $fields['username'], $fields['img'], $fields['id']
+        ]);
+    }
 }
