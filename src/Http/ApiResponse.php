@@ -14,6 +14,8 @@ class ApiResponse extends Response
     public function successResponse($payload)
     {
         $this->setCode(200);
+        $this->setHeaders('Content-Type: text/plain');
+        $this->setHeaders('Access-Control-Allow-Origin: *');
         $this->sendResponse();
         
         exit(json_encode([
@@ -32,6 +34,8 @@ class ApiResponse extends Response
     public function failureResponse($payload)
     {
         $this->setCode(500);
+        $this->setHeaders('Content-Type: text/plain');
+        $this->setHeaders('Access-Control-Allow-Origin: *');
         $this->sendResponse();
 
         exit(json_encode([

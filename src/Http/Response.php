@@ -122,15 +122,12 @@ class Response
      */ 
     public function sendResponse()
     {
-        $headers = '';
+        $this->setHeaders("HTTP/1.1 {$this->code}");
 
         foreach($this->headers as $header) {
-            $headers .= $header;
+            $this->sendHeader($header);
         }
 
-        $headers .= "HTTP/1.1 {$this->code}";
-
-        $this->sendHeader($headers);
         return $this->data;
     }
 }

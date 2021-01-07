@@ -40,7 +40,7 @@ class Post extends Model
     public function getPostById(int $id)
     {
         $statement = $this->connection->prepare(
-            "SELECT u.username, p.title, blog.p.body, p.created_at 
+            "SELECT u.username, p.id, p.preview_text, p.title, p.body, p.created_at 
                 FROM {$this->table} p 
                 INNER JOIN users u
                 ON u.id = p.user_id 
@@ -80,5 +80,23 @@ class Post extends Model
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Updates posts title, preview_text and body
+     * posts table rows by unique id field and returns
+     * primitive bool data type
+     * 
+     * @return bool
+     */ 
+    public function editPost(array $fields)
+    {
+        $statement = $this->connection->prepare(
+            "UPDATE {$this->table} SET = title = ? SET preview_text = ? SET body = ? WHERE id = ?"
+        );
+
+        return $statement->execute([
+            $fields['title'], $fields['preview_text'], $fields['body'], $fields['id']
+        ]);
     }
 }

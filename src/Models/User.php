@@ -50,6 +50,25 @@ class User extends Model
     }
 
     /**
+     * Fetch user fields by id value.
+     * Returns user id, username and img table rows by 
+     * unique id field
+     * 
+     * @param int $id
+     * @return array 
+     */ 
+    public function getUserById(int $id)
+    {
+        $statement = $this->connection->prepare(
+            "SELECT id, username, img FROM {$this->table} WHERE id = ?"
+        );
+
+        $statement->execute([$id]);
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Returns quantity of available users in blog
      * 
      * @return array 
@@ -61,5 +80,22 @@ class User extends Model
         );
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Updates posts username and img posts table rows 
+     * by unique id field and returns primitive bool data type
+     * 
+     * @return bool
+     */
+    public function editUser(array $fields)
+    {
+        $statement = $this->connection->prepare(
+            "UPDATE {$this->table} SET username = ? SET img = ? WHERE id = ?"
+        );
+
+        return $statement->execute([
+            $fields['username'], $fields['img'], $fields['id']
+        ]);
     }
 }

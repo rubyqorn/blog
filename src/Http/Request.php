@@ -40,4 +40,32 @@ class Request
     {
         return isset($this->postData[$key]) ? $this->postData[$key] : false;
     }
+
+    /**
+     * Returns all request data in array format.
+     * 
+     * @return array 
+     */ 
+    public function all()
+    {
+        return $this->postData;
+    }
+
+    /**
+     * Validates if specified method name equals
+     * called request method and returns bool
+     * value. Method name argument must be in 
+     * uppercase notation
+     * 
+     * @param string $methodName
+     * @return vool 
+     */ 
+    public function isMethod(string $methodName)
+    {
+        if ($methodName === $methodName) {
+            return true;
+        }
+
+        return false;
+    }
 }
